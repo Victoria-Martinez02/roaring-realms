@@ -8,4 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 66c0e2813bbd3c744b9adb6e01eff267
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 09dd3b95281410f498521e864dfbc6f1
+  - enabled: 1
+    path: Assets/Scenes/Farm.unity
+    guid: 08bf2f9873f64a140baca9c50a49296b
+  - enabled: 1
+    path: Assets/Scenes/Sleepy Forest.unity
+    guid: 3c50fa3fa2f6bfa44b266e4b8a866590
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: ce5ccf6cb1132a541a781a1db52698c4
   m_configObjects: {}
