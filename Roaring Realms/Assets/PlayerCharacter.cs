@@ -12,6 +12,7 @@ public class PlayerCharacter : MonoBehaviour
 
     Rigidbody2D pc;
     SpriteRenderer sr;
+    
 
     // Start is called before the first frame update
     void Start()
