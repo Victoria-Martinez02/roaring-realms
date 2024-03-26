@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ChasePlayer : MonoBehaviour
 {
-    [SerializeField] GameObject pc;
-    public SpriteRenderer sr;
     float distance;
     // Start is called before the first frame update
 
@@ -16,7 +14,7 @@ public class ChasePlayer : MonoBehaviour
         {
             distance = Vector2.Distance(transform.position, pc.transform.position);
 
-            if(distance < 5)
+            if(distance < 5 && this.gameObject != null)
                 transform.position = Vector2.MoveTowards(transform.position, pc.transform.position, speed * Time.deltaTime);
 
             //sr.flipX = rb.velocity.x < 0;

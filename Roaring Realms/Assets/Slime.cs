@@ -40,4 +40,12 @@ public class Slime : MonoBehaviour
             col.GetComponent<PlayerCharacter>().TakeDamage(power);
         } 
     }
+
+    public void RecieveDamage(short pow)
+    {
+        hp -= pow;
+        Debug.Log(hp);
+        if(hp <=  0)
+            Destroy(this.gameObject);
+    }
 }

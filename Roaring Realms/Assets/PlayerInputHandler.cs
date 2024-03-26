@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] PlayerCharacter pc;
+    [SerializeField] BasicAttack ba;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,12 @@ public class PlayerInputHandler : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             pc.run = !pc.run;
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 trans = pc.transform.position;
+            trans.x += pc.GetComponent<SpriteRenderer>().flipX ? -1.5f : 1.5f;
+            ba.BaseAttack(trans);
         }
 
         pc.MovePC(input);

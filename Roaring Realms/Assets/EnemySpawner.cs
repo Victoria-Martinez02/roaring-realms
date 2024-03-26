@@ -41,6 +41,11 @@ public class EnemySpawner : MonoBehaviour
 
         curSpawned++;
     }
+
+    public void EnemyDefeated()
+    {
+        curSpawned--;
+    }
 }
 
     

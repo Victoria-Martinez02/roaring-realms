@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] float speed = 4f;
     [SerializeField] short maxHealth = 100;
     [SerializeField] short maxStamina = 300;
+    public short pow = 5;
     
     [SerializeField] public int gold = 500;
     short curHealth;
