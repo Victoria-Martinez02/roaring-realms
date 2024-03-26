@@ -28,6 +28,10 @@ public class PlayerInputHandler : MonoBehaviour
         if(Input.GetKey(KeyCode.D)){
             input.x  += 1;
         }
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            pc.run = !pc.run;
+        }
 
         pc.MovePC(input);
     }

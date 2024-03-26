@@ -11,8 +11,10 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] public int gold = 500;
     short curHealth;
     short curStamina;
+    short iFrames;
 
     bool spDepleted = false;
+    public bool run = false;
 
     Rigidbody2D pc;
     SpriteRenderer sr;
@@ -37,7 +39,7 @@ public class PlayerCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(iFrames >= 0) iFrames -=1; 
     }
 
     public void MovePC(Vector3 direction)
@@ -50,13 +52,15 @@ public class PlayerCharacter : MonoBehaviour
         {
             sr.flipX = !sr.flipX;
         }
-        pc.velocity = direction * speed;
+        pc.velocity = run ? direction * (speed + 3) : direction * speed;
     }
 
     public void TakeDamage(short dmg)
-    {
+    {   
+        if(iFrames > 0) return;
         curHealth -= dmg;
         hb.UpdateHP(curHealth);
+        iFrames = 5;
     }
 
     public void LoseStamina(short stam)
