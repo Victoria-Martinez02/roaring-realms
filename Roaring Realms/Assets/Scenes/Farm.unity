@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.29881477
       objectReference: {fileID: 0}
+    - target: {fileID: 5970880271026229323, guid: 1a257a19770265143b5fd8a7eca83b2d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8937677429905246697, guid: 1a257a19770265143b5fd8a7eca83b2d, type: 3}
       propertyPath: m_Name
       value: DoorTrigger

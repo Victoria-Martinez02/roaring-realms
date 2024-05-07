@@ -46,6 +46,10 @@ public class Slime : MonoBehaviour
         hp -= pow;
         Debug.Log(hp);
         if(hp <=  0)
+        {
+            EnemySpawner es = GameObject.FindObjectOfType<EnemySpawner>();
+            es.EnemyDefeated(); 
             Destroy(this.gameObject);
+        }
     }
 }

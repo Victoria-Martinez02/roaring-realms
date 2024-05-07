@@ -16,7 +16,9 @@ public class PlayerInputHandler : MonoBehaviour
     void Update()
     {
         Vector3 input = Vector3.zero;
-
+        
+        if(Input.GetKey(KeyCode.Escape))
+            Application.Quit();
         if(Input.GetKey(KeyCode.W)){
             input.y += 1;
         }

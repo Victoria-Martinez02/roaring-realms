@@ -38,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
         float randomX = Random.Range(minX,maxX);
         int enemy = Random.Range(0,options-1);
         Instantiate(enemyPrefabs[enemy], new Vector3(randomX,randomY,0), Quaternion.identity);
-
         curSpawned++;
     }
 
