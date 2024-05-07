@@ -28,11 +28,11 @@ public class ScreenRes : MonoBehaviour
 
     void DropdownValueChanged(int val)
     {
-        sm.ChangeResolution(val);
+        //sm.ChangeResolution(val);
     }
 
     void ToggleValueChanged(bool on)
     {
-        sm.ChangeView(on);
+        //sm.ChangeView(on);
     }
 }

@@ -2,21 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
     [SerializeField] Toggle tog;
+    [SerializeField] TMP_Dropdown drop;
     Resolution initial;
+    [SerializeField]GameObject opt;
+    bool active = false;
     int width,height;
+
+    public static SettingsManager singleton;
+
+    void Awake()
+    {
+        if(singleton != null)
+        {
+            Destroy(this.gameObject);
+        }
+        singleton = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        initial.width = Screen.width;
-        initial.height = Screen.height;
+        initial.width = Screen.currentResolution.width;
+        initial.height = Screen.currentResolution.width;
     }
 
-    public void ChangeResolution(int opt)
+    public void ChangeResolution()
     {
+        int opt = drop.value;
+
         switch(opt)
         {
             case 0:
@@ -44,8 +63,22 @@ public class SettingsManager : MonoBehaviour
         Screen.SetResolution(width,height,Screen.fullScreen);
     }
 
-    public void ChangeView(bool fullscreen)
+    public void ChangeView()
     {
+        bool fullscreen = tog.isOn;
         Screen.fullScreenMode = fullscreen? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+        Debug.Log(fullscreen);
+    }
+
+    public void ReturnToTitle()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void ToggleOptions()
+    {
+        Clock.singleton.timePaused = !Clock.singleton.timePaused;
+        active = !active;
+        opt.SetActive(active);
     }
 }

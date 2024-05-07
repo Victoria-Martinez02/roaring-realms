@@ -14,9 +14,22 @@ public class Clock : MonoBehaviour
     DOTW curDOTW = DOTW.MONDAY;
     short day = 1;
 
+    public bool timePaused = false;
+
     enum Season{SPRING,SUMMER,FALL,WINTER};
 
     enum DOTW{MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY};
+
+    public static Clock singleton;
+
+    void Awake()
+    {
+        if(singleton != null)
+        {
+            Destroy(this.gameObject);
+        }
+        singleton = this;
+    }
 
     void Start()
     {
@@ -26,12 +39,14 @@ public class Clock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curTime += Time.deltaTime/1.5f;
+        if(!timePaused){
+            curTime += Time.deltaTime/1.5f;
         curTime = curTime > 1440f ? 0f : curTime;
         DisplayTime();
         
         if(curTime >= 120f && curTime < 360f)
             NewDay();
+        }  
     }
 
     void DisplayTime()
