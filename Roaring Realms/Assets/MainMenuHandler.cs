@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
+    [SerializeField] GameObject ui;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,9 @@ public class MainMenuHandler : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("Farm");
+        AudioController.singleton.playMusic("Everyday");
+        ui.SetActive(true);
+        SceneManager.LoadScene("Home");
     }
 
     public void Continue()

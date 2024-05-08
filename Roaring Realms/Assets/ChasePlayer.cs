@@ -10,7 +10,7 @@ public class ChasePlayer : MonoBehaviour
     // Update is called once per frame
     public void Chase(GameObject pc, SpriteRenderer sr, short speed)
     {
-        if(sr != null && pc != null)
+        if(sr != null && pc != null && !Clock.singleton.timePaused)
         {
             distance = Vector2.Distance(transform.position, pc.transform.position);
 

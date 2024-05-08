@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCharacter : MonoBehaviour
 {
     [SerializeField] float speed = 4f;
-    [SerializeField] short maxHealth = 100;
+    [SerializeField] short maxHealth = 200;
     [SerializeField] short maxStamina = 300;
     public short pow = 5;
     
@@ -20,8 +21,8 @@ public class PlayerCharacter : MonoBehaviour
     Rigidbody2D pc;
     SpriteRenderer sr;
     
-    [SerializeField] HealthBar hb;
-    [SerializeField] StaminaBar sb;
+    // HealthBar hb;
+    // StaminaBar sb;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,8 @@ public class PlayerCharacter : MonoBehaviour
         pc = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
-        hb.SetMaxHP(maxHealth);
-        sb.SetMaxSP(maxStamina);
+        HealthBar.singleton.SetMaxHP(maxHealth);
+        StaminaBar.singleton.SetMaxSP(maxStamina);
     }
 
     // Update is called once per frame
@@ -60,8 +61,14 @@ public class PlayerCharacter : MonoBehaviour
     {   
         if(iFrames > 0) return;
         curHealth -= dmg;
-        hb.UpdateHP(curHealth);
+        HealthBar.singleton.UpdateHP(curHealth);
         iFrames = 5;
+
+        if(curHealth <= 0)
+        {
+            Debug.Log(curHealth);
+            Clock.singleton.NewDay();
+        }
     }
 
     public void LoseStamina(short stam)
@@ -72,7 +79,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             spDepleted = curStamina <= 0;
             curStamina -= spDepleted ? (short) 0 : stam;
-            sb.UpdateSP(curStamina); 
+            StaminaBar.singleton.UpdateSP(curStamina); 
         }
     }
 }

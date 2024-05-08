@@ -8,6 +8,17 @@ public class Gold : MonoBehaviour
 {
     [SerializeField] PlayerCharacter pc;
     [SerializeField] TextMeshProUGUI gold;
+
+    public static Gold singleton;
+
+    void Awake()
+    {
+        if(singleton != null)
+        {
+            Destroy(this.gameObject);
+        }
+        singleton = this;
+    }
     // Start is called before the first frame update
     void Start()
     {

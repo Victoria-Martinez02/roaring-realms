@@ -172,9 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  maxHealth: 100
+  maxHealth: 200
   maxStamina: 300
+  pow: 5
   gold: 500
   run: 0
-  hb: {fileID: 0}
-  sb: {fileID: 0}

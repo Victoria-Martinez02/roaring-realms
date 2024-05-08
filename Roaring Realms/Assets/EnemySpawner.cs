@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
         {
             while(true)
             {
-                if(curSpawned < maxSpawn)
+                if(curSpawned < maxSpawn && !Clock.singleton.timePaused)
                     SpawnEnemyRandom();
                 yield return new WaitForSeconds(5f);
             }

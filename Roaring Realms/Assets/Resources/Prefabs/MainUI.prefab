@@ -1187,6 +1187,7 @@ MonoBehaviour:
   season: {fileID: 4342545425616940391}
   date: {fileID: 6840157684131773224}
   curTime: 360
+  timePaused: 0
 --- !u!1 &4868614404113089358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1696,7 @@ GameObject:
   - component: {fileID: 4808433898749276791}
   - component: {fileID: 4884294557047225365}
   - component: {fileID: 1651407721161655346}
+  - component: {fileID: 8515469822432010969}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -1788,6 +1790,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8515469822432010969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7528986888791117505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051502112bf1d604f9862562906bc142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  can: {fileID: 0}
 --- !u!1 &7732196602115766645
 GameObject:
   m_ObjectHideFlags: 0

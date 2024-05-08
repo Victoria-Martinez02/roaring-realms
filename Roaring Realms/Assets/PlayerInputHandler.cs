@@ -7,10 +7,6 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] PlayerCharacter pc;
     [SerializeField] BasicAttack ba;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -42,7 +38,10 @@ public class PlayerInputHandler : MonoBehaviour
                 Vector3 trans = pc.transform.position;
                 trans.x += pc.GetComponent<SpriteRenderer>().flipX ? -1.5f : 1.5f;
                 ba.BaseAttack(trans);
+                AudioController.singleton.playSFX("Attack");
             }
+            if(Input.GetKeyDown(KeyCode.T))
+                Clock.singleton.PassTime();
 
             pc.MovePC(input);
         }

@@ -14,6 +14,7 @@ public class SettingsManager : MonoBehaviour
     bool active = false;
     int width,height;
 
+    // Start is called before the first frame update
     public static SettingsManager singleton;
 
     void Awake()
@@ -24,12 +25,20 @@ public class SettingsManager : MonoBehaviour
         }
         singleton = this;
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
+        DontDestroyOnLoad(this);
         initial.width = Screen.currentResolution.width;
         initial.height = Screen.currentResolution.width;
+    }
+
+    void Update()
+    {
+        if(opt.GetComponent<Canvas>().worldCamera == null)
+        {
+            opt.GetComponent<Canvas>().worldCamera = FindObjectOfType<Camera>();
+        }
     }
 
     public void ChangeResolution()
@@ -72,12 +81,14 @@ public class SettingsManager : MonoBehaviour
 
     public void ReturnToTitle()
     {
-        SceneManager.LoadScene("Main Menu");
+        Application.Quit();
+        //SceneManager.LoadScene("Main Menu");
     }
 
     public void ToggleOptions()
     {
-        Clock.singleton.timePaused = !Clock.singleton.timePaused;
+        if(Clock.singleton != null)
+            Clock.singleton.timePaused = !Clock.singleton.timePaused;
         active = !active;
         opt.SetActive(active);
     }

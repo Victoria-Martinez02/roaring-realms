@@ -7,7 +7,6 @@ public class Sunlight : MonoBehaviour
 {
     Light2D sun;
     [SerializeField] Gradient gradient;
-    [SerializeField] Clock clock;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +16,7 @@ public class Sunlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DayToNight(clock.curTime);
+        DayToNight(Clock.singleton.curTime);
     }
 
     void DayToNight(float time)

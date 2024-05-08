@@ -47,9 +47,11 @@ public class Slime : MonoBehaviour
         Debug.Log(hp);
         if(hp <=  0)
         {
+            AudioController.singleton.playSFX("Slime Death");
             EnemySpawner es = GameObject.FindObjectOfType<EnemySpawner>();
             es.EnemyDefeated(); 
             Destroy(this.gameObject);
         }
+        AudioController.singleton.playSFX("Slime Hit");
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Clock : MonoBehaviour
@@ -13,6 +14,7 @@ public class Clock : MonoBehaviour
     Season curSeason = Season.SPRING;
     DOTW curDOTW = DOTW.MONDAY;
     short day = 1;
+    bool late, toggle = false;
 
     public bool timePaused = false;
 
@@ -26,14 +28,14 @@ public class Clock : MonoBehaviour
     {
         if(singleton != null)
         {
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
         singleton = this;
     }
 
     void Start()
     {
-        DisplayDate();
+        AudioController.singleton.playMusic("Everyday");
     }
 
     // Update is called once per frame
@@ -44,9 +46,21 @@ public class Clock : MonoBehaviour
         curTime = curTime > 1440f ? 0f : curTime;
         DisplayTime();
         
+        late = curTime > 1200;
+        if(late && ! toggle)
+        {
+            AudioController.singleton.playMusic("Nightfall");
+            toggle = true;
+        }
+
         if(curTime >= 120f && curTime < 360f)
             NewDay();
         }  
+    }
+
+    public void PassTime()
+    {
+        curTime += 120f;
     }
 
     void DisplayTime()
@@ -102,9 +116,10 @@ public class Clock : MonoBehaviour
 
         season.text = s;
         date.text = dotw + " " + day;
+        Debug.Log(dotw + " " + day);
     }
 
-    void NewDay()
+    public void NewDay()
     {
         switch(curDOTW){
             case DOTW.MONDAY:
@@ -148,5 +163,13 @@ public class Clock : MonoBehaviour
             }
             day = 1;
         }
+        SceneManager.LoadScene("Home");
+        HealthBar.singleton.resetHP();
+        StaminaBar.singleton.resetSP();
+        curTime = 360f;
+        toggle = false;
+        DisplayDate();
+        AudioController.singleton.playMusic("Everyday");
+        
     }
 }

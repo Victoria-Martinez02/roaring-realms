@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -11,6 +12,16 @@ public class AudioController : MonoBehaviour
     [SerializeField] Slider sfx;
     [SerializeField] AudioMixer mixer;
     public static AudioController singleton;
+    string curPlaying = "";
+
+    [System.Serializable]
+    public class Audio{
+        public string name;
+        public AudioClip clip;
+    }
+
+    public Audio[] musicAudio, sfxAudio;
+    public AudioSource musicSource, sfxSource;
 
     void Awake()
     {
@@ -30,6 +41,8 @@ public class AudioController : MonoBehaviour
         AdjustMaster();
         AdjustMusic();
         AdjustSFX();
+
+        AudioController.singleton.playMusic("Menu Theme");
     }
 
     public void AdjustMaster()
@@ -60,8 +73,25 @@ public class AudioController : MonoBehaviour
         sfx.value = PlayerPrefs.GetFloat("sfxVol");
     }
 
-    void playMusic()
+    public void playMusic(string name)
     {
-        
+        Audio a = Array.Find(musicAudio, x => x.name == name);
+
+        if(a != null && !a.Equals(curPlaying))
+        {
+            musicSource.clip = a.clip;
+            musicSource.Play();
+        }
+    }
+
+    public void playSFX(string name)
+    {
+        Audio a = Array.Find(sfxAudio, x => x.name == name);
+
+        if(a != null)
+        {
+            sfxSource.clip = a.clip;
+            sfxSource.Play();
+        }
     }
 }
